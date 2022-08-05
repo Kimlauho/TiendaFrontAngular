@@ -1,0 +1,7 @@
+<div class="products-grid">
+    <app-producto class="box" 
+        [producto]="producto"
+        *ngFor="let producto of productos"
+        (productoAgregado)="agregarProductoCarroCompra($event)">
+    </app-producto>
+</div>

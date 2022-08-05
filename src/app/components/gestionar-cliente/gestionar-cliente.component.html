@@ -1,0 +1,30 @@
+<div class="container">
+<form (ngSubmit)="editarcliente()" #formEditarPerfil="ngForm">
+      <input class="input-edit" [value]="cliente.idCliente" readonly hidden>
+      <div class="mb-3">
+          <label for="cedula" class="form-label">Cedula:</label>
+          <input type="text" required #cedula="ngModel" name="cedula" class="form-control"
+              [(ngModel)]="cliente.cedula">
+          <p class="mensaje-error" [class.invalid]="cedula.invalid">Este campo es obligatorio</p>
+      </div>
+      <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" required #nombre="ngModel" name="nombre" class="form-control"
+              [(ngModel)]="cliente.nombre">
+          <p class="mensaje-error" [class.invalid]="nombre.invalid">Este campo es obligatorio</p>
+      </div>
+      <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido:</label>
+          <input type="text" required #apellido="ngModel" name="apellido" class="form-control"
+              [(ngModel)]="cliente.apellido">
+          <p class="mensaje-error" [class.invalid]="apellido.invalid">Este campo es obligatorio</p>
+      </div>
+      <div class="mb-3">
+          <label for="telefono" class="form-label">Telefono:</label>
+          <input type="text" required #telefono="ngModel" name="telefono" class="form-control"
+              [(ngModel)]="cliente.telefono">
+          <p class="mensaje-error" [class.invalid]="telefono.invalid">Este campo es obligatorio</p>
+      </div> 
+      <button type="submit" [disabled]="formEditarPerfil.invalid" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div class="body">
+  <p>Historico de compras</p>
+  <div class="accordion" id="accordion">
+    <div class="accordion-item" *ngFor="let venta of ventas" >
+      <h2 class="accordion-header" id="headingOne">
+        <span class="accordion-button" >
+          <p>Nombre: {{ venta.nombre  + ' ' + venta.apellido }} - Total: {{ venta.valorTotal}}</p>
+        </span>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <table>
+            <tr *ngFor="let detalle of venta._DetalleVenta">
+              <td>{{ detalle.nombreProducto}}  - ${{ detalle.valorUnitario}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="show-mobile">
+    <div>
+        <button class="btn-icono" (click)="toggleMenu()">
+            <img src="./assets/images/menu.png" alt="menu">
+        </button>
+        <a routerLink="/" class="btn-icono"> 
+            <img src="./assets/images/tienda.png" alt="logo">
+        </a>
+        <button (click)="toggleMenuCar()" class="btn-icono">
+            <img src="./assets/images/shopping-cart.png" alt="logo">
+        </button>
+    </div>
+    <div class="side-menu" [class.active]="activeMenu">
+        <button (click)="toggleMenu()">Cerrar</button>
+        <ul>
+            <li><a routerLink="gestionar-perfil">Mi perfil</a></li>
+            <li><a routerLink="gestionar-ventas">Compras</a></li>
+            <li><a routerLink="gestionar-productos">Productos</a></li>
+        </ul>
+    </div>
+</div>
+<div class="hide-mobile">
+    <div>
+        <nav>
+            <a routerLink="/" class="logo btn-icono" >
+                <img src="./assets/images/tienda.png" alt="logo">
+            </a>
+            <ul>
+                <li><a routerLink="gestionar-perfil">Mi perfil</a></li>
+                <li><a routerLink="gestionar-ventas">Compras</a></li>
+                <li><a routerLink="gestionar-productos">Productos</a></li>
+            </ul>
+        </nav>
+        <div class="info">
+            <div class="account">laura@roa.com</div>
+            <div>
+                <button (click)="toggleMenuCar()" class="btn-icono">
+                    <img src="./assets/images/shopping-cart.png" alt="logo">
+                </button>
+                <span class="counter">{{ contadorProductos }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="side-menu-car" [class.active]="activeMenuCarro">
+    <h2>Productos seleccionados</h2>
+    <button class="btn-cerrar" (click)="toggleMenuCar()">Cerrar</button>
+    <div>
+        <ul>
+            <li class="list-producto" *ngFor="let producto of productosAgregados">
+                <img [src]="producto.image" alt="producto">
+                <p hidden>{{ producto.idProducto }}</p>
+                <p>{{ producto.nombreProducto }}</p>
+                <p>{{ producto.valorUnitario }}</p>
+                <button class="btn btn-danger" (click)="eliminarProductoCarro(producto.index)">Eliminar</button>
+            </li>
+
+        </ul>
+    </div>
+    <div class="" *ngIf="productosAgregados.length > 0">
+        <p class="li-total"> Total: {{ valorTotal | number: '1.2-2' }}</p>
+        <button class=" btn-limpiar" (click)="limpiarCarro()">Limpiar Carro</button>
+        <button class=" btn-limpiar" (click)="registrarCompra()">Comprar</button>
+    </div>
+</div>

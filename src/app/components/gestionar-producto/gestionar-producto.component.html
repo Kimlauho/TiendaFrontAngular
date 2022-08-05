@@ -1,0 +1,87 @@
+<div class="body">
+  <div class="row">
+    <div class="col col-lg-8 col-md-8">
+    <button class="btn btn-primary" (click)="habilitarCreacionProducto()">Agregar producto</button><br/><br/>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th width="200"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td>{{ producto.idProducto }}</td>
+            <td>{{producto.nombreProducto}}</td>
+            <td>{{producto.valorUnitario}}</td>
+            <td colspan="2">
+              <button type="button" id="btn-editar" class="btn btn-primary"
+                (click)="editarProducto(producto)">Editar</button>
+              <button type="button" class="btn btn-danger" (click)="eliminarProducto(producto)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+    <div class="col col-lg-4 col-md-4 box" [hidden]="hidden">
+      <div class="card ">
+        <div class="card-body">
+          <h2 class="card-title tittle">Editar producto</h2>
+          <hr>
+          <form (ngSubmit)="guardarEdicionProducto()" #formEditar="ngForm">
+            <input class="input-edit" [value]="productoAEditar.idProducto" readonly hidden>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre producto:</label>
+              <input type="text" required #nombre="ngModel" name="nombre" class="form-control"
+                [(ngModel)]="productoAEditar.nombreProducto">
+              <p class="mensaje-error" [class.invalid]="nombre.invalid">Este campo es obligatorio</p>
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio:</label>
+              <input type="number" required #precio="ngModel" name="precio" class="form-control"
+                [(ngModel)]="productoAEditar.valorUnitario">
+              <p class="mensaje-error" [class.invalid]="precio.invalid">Este campo es obligatorio</p>
+            </div>
+            <button type="submit" [disabled]="formEditar.invalid" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-danger" (click)="cancelarEdicion()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-lg-4 col-md-4 box" [hidden]="hiddenCreacion">
+      <div class="card ">
+        <div class="card-body">
+          <h2 class="card-title tittle">Crear producto</h2>
+          <hr>
+          <form (ngSubmit)="guardarCreacionProducto()" #formCrear="ngForm">
+            <div class="mb-3">
+              <label for="nombreProducto" class="form-label">Nombre producto:</label>
+              <input type="text" required #nombreProducto="ngModel" name="nombreProducto" class="form-control"
+                [(ngModel)]="productoACrear.nombreProducto">
+              <p class="mensaje-error" [class.invalid]="nombreProducto.invalid">Este campo es obligatorio</p>
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio:</label>
+              <input type="number" required #precio="ngModel" name="precio" class="form-control"
+                [(ngModel)]="productoACrear.valorUnitario">
+              <p class="mensaje-error" [class.invalid]="precio.invalid">Este campo es obligatorio</p>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Link Img:</label>
+              <input type="text" required #image="ngModel" name="image" class="form-control"
+                [(ngModel)]="productoACrear.image">
+              <p class="mensaje-error" [class.invalid]="image.invalid">Este campo es obligatorio</p>
+            </div>
+            <button type="submit" [disabled]="formCrear.invalid" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-danger" (click)="cancelarCreacion()">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

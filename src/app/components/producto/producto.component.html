@@ -1,0 +1,6 @@
+<img [src]="producto.image" alt="imagen" class="card-img-top">
+<div class="card-body">
+    <h2 class="card-title">{{ producto.nombreProducto}}</h2>
+    <h2>{{ producto.valorUnitario }}</h2>
+    <button class="btn btn-primary" (click)="agregarProductoCarro()"> Agregar </button>
+</div>
